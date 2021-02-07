@@ -2,12 +2,12 @@ const theme = {
     // Colours
     white: '#ffffff',
     black: '#000000',
-    grey: '#EAEAEA',
+    grey: '#eaeaea',
 
-    backgroundColor: '#EAEAEA',
+    backgroundColor: '#eaeaea',
 
     // Fonts
-    fontSize: '1.8rem',
+    // fontSize: '2rem',
     fontFamily:
         '"HaasGrotDisp", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
     fontFamilyHeading:

@@ -46,10 +46,10 @@ const GlobalStyle = createGlobalStyle`
     height: auto;
     width: 100%;
     overflow: auto;
-    font-size: 1.6rem;
-    line-height: 1.25;
+    font-size: 2rem;
+    line-height: 1.2;
     font-family: ${({ theme }) => theme.fontFamily};
-    background-color: ${({ theme }) => theme.backgroundColor};
+    background-color: ${({ theme }) => theme.grey};
     color: ${({ theme }) => theme.black};
   }
 

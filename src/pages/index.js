@@ -1,7 +1,11 @@
 import React from "react"
+import styled from 'styled-components';
 
 // Layout
 import Layout from '../layouts/home';
+
+// Component 
+import Cases from '../components/Cases';
 
 const IndexPage = () => {
 
@@ -9,7 +13,7 @@ const IndexPage = () => {
     <Layout
     // backgroundColor={bgColor}
     >
-      <h1>Index</h1>
+      <Cases />
     </Layout>
   );
 };

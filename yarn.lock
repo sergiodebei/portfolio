@@ -1447,6 +1447,10 @@
     prop-types "^15.6.1"
     react-lifecycles-compat "^3.0.4"
 
+"@scarf/scarf@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@scarf/scarf/-/scarf-1.1.0.tgz#b84b4a91cd938a688d36245b7a7db6fbc476a499"
+
 "@sideway/address@^4.1.0":
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/@sideway/address/-/address-4.1.0.tgz#0b301ada10ac4e0e3fa525c90615e0b61a72b78d"
@@ -2419,6 +2423,13 @@ base@^0.11.1:
 batch@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/batch/-/batch-0.6.1.tgz#dc34314f4e679318093fc760272525f94bf25c16"
+
+beautiful-react-hooks@^0.31.0:
+  version "0.31.0"
+  resolved "https://registry.yarnpkg.com/beautiful-react-hooks/-/beautiful-react-hooks-0.31.0.tgz#70a6ae01dc68289219fad0ea13a087a169e5b407"
+  dependencies:
+    lodash.debounce "^4.0.8"
+    lodash.throttle "^4.1.1"
 
 better-assert@~1.0.0:
   version "1.0.2"
@@ -7350,6 +7361,10 @@ lodash.clonedeep@4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz#e23f3f9c4f8fbdde872529c1071857a086e5ccef"
 
+lodash.debounce@^4.0.8:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
+
 lodash.deburr@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/lodash.deburr/-/lodash.deburr-4.1.0.tgz#ddb1bbb3ef07458c0177ba07de14422cb033ff9b"
@@ -7402,6 +7417,10 @@ lodash.templatesettings@^4.0.0:
   resolved "https://registry.yarnpkg.com/lodash.templatesettings/-/lodash.templatesettings-4.2.0.tgz#e481310f049d3cf6d47e912ad09313b154f0fb33"
   dependencies:
     lodash._reinterpolate "^3.0.0"
+
+lodash.throttle@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/lodash.throttle/-/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
 
 lodash.uniq@^4.5.0:
   version "4.5.0"
@@ -8780,6 +8799,13 @@ pnp-webpack-plugin@^1.6.4:
   resolved "https://registry.yarnpkg.com/pnp-webpack-plugin/-/pnp-webpack-plugin-1.6.4.tgz#c9711ac4dc48a685dabafc86f8b6dd9f8df84149"
   dependencies:
     ts-pnp "^1.1.6"
+
+polished@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/polished/-/polished-4.1.0.tgz#ab80c10e04fdf8795faee723b59577de18d2936b"
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+    "@scarf/scarf" "^1.1.0"
 
 portfinder@^1.0.26:
   version "1.0.28"
