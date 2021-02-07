@@ -4,6 +4,7 @@ import { transparentize } from 'polished';
 
 const Wrapper = styled.div`
   padding: 0rem 1.4rem;
+  margin-bottom: 0;
   border-bottom: 1px solid ${({ theme }) => transparentize(1, theme.black)};
   @media (${({ theme }) => theme.respondTo.desktop}) {
     padding: 0 3rem;
@@ -14,14 +15,17 @@ const Wrapper = styled.div`
   }
   ${({ theme }) => theme.transition('padding', '0.3')};
   ${({ theme }) => theme.transition('border-bottom', '0.3')};
+  ${({ theme }) => theme.transition('margin-bottom', '0.3')};
   /* color: ${({ theme, active }) => active && theme.white}; */
   ${({ theme, active }) =>
     active &&
     css`
       padding: 2rem 1.4rem;
       border-bottom: 1px solid ${({ theme }) => transparentize(0.8, theme.white)};
+      margin-bottom: 2rem;
       @media (${theme.respondTo.desktop}) {
         padding: 1.7rem 3rem;
+        margin-bottom: 1.7rem;
       }
     `}
 `;
@@ -61,12 +65,18 @@ const StyledA = styled.a`
   margin-top: 1.1rem;
   font-size: 1.4rem;
   line-height: 1.25;
-  color: ${({ theme }) => theme.black};
+  color: ${({ theme }) => theme.white};
+  display: none;
+  ${({ theme, active }) =>
+    active &&
+    css`
+      display: block;
+    `}
   @media (${({ theme }) => theme.respondTo.desktop}) {
+    display: block;
     margin-top: 0;
     font-size: 2.4rem;
     opacity: 0;
-    color: ${({ theme }) => theme.white};
     ${({ theme }) => theme.transition('opacity', '0.3')};
     ${({ theme, active }) =>
     active &&
