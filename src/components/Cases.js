@@ -8,15 +8,9 @@ import Case from '../components/case';
 
 const Wrapper = styled.div`
   margin-top: 52rem;
-  color: ${({ theme }) => theme.black};
-  ${({ theme }) => theme.transition('color', '0.3')}
   @media (${({ theme }) => theme.respondTo.desktop}) {
     margin-top: 58rem;
   }
-  &:hover{
-    color: ${({ theme }) => transparentize(0.66, theme.white)}
-  }
-
 `;
 
 const Cases = () => {

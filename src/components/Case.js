@@ -44,28 +44,33 @@ const Details = styled.div`
       margin-left: 3.3rem;
     }
   }
+  ${({ theme, inactive }) =>
+    inactive &&
+    css`
+      color: ${({ theme }) => transparentize(0.66, theme.white)};
+    `}
   ${({ theme, active }) =>
     active &&
     css`
       color: ${theme.white};
     `}
+
 `;
 
 const StyledA = styled.a`
   margin-top: 1.1rem;
   font-size: 1.4rem;
   line-height: 1.25;
-  color: inherit;
+  color: ${({ theme }) => theme.black};
   @media (${({ theme }) => theme.respondTo.desktop}) {
     margin-top: 0;
     font-size: 2.4rem;
     opacity: 0;
-    /* ${({ theme }) => theme.transition('color', '0.3')}; */
+    color: ${({ theme }) => theme.white};
     ${({ theme }) => theme.transition('opacity', '0.3')};
     ${({ theme, active }) =>
     active &&
     css`
-      color: ${theme.white};
       opacity: 1;
     `}
   }
@@ -80,6 +85,7 @@ const Case = ({ title, year, link, hoveredItem, setHoveredItem }) => {
     >
       <Details
         active={hoveredItem == title ? 1 : 0}
+        inactive={hoveredItem != null ? 1 : 0}
       >
         <h2>{title}</h2>
         <p>{year}</p>
