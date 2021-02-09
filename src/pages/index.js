@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 // Layout
 import Layout from '../layouts/home';
@@ -9,7 +9,6 @@ import ProjectImage from '../components/ProjectImage';
 
 const IndexPage = () => {
   const [hoveredItem, setHoveredItem] = useState(null);
-  console.log("🚀 ~ file: index.js ~ line 12 ~ IndexPage ~ hoveredItem", hoveredItem)
   const [imgVisible, setImgVisible] = useState(false);
   const [imgSource, setImgSource] = useState(null);
 
@@ -20,7 +19,7 @@ const IndexPage = () => {
         src={imgSource}
       />
       <Cases
-        hoveredIte m={hoveredItem}
+        hoveredItem={hoveredItem}
         setHoveredItem={setHoveredItem}
         setImgVisible={setImgVisible}
         setImgSource={setImgSource}

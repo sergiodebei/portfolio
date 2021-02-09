@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import styled, { css } from 'styled-components';
 import { transparentize } from 'polished';
 import { store } from '../store/store';
@@ -31,6 +31,11 @@ const Wrapper = styled(motion.div)`
         margin-bottom: 1.7rem;
       }
     `}
+  ${({ isLast }) =>
+    isLast &&
+    css`
+      border-bottom: 1px solid transparent;
+    `}
 `;
 
 const Details = styled.div`
@@ -61,7 +66,6 @@ const Details = styled.div`
     css`
       color: ${theme.white};
     `}
-
 `;
 
 const StyledA = styled.a`
@@ -89,7 +93,7 @@ const StyledA = styled.a`
   }
 `;
 
-const Case = ({ item, hoveredItem, setHoveredItem, setImgVisible, setImgSource }) => {
+const Case = ({ item, hoveredItem, setHoveredItem, setImgVisible, setImgSource, isLast }) => {
   // const { state, dispatch } = useContext(store);
 
   return (
@@ -105,6 +109,7 @@ const Case = ({ item, hoveredItem, setHoveredItem, setImgVisible, setImgSource }
         setImgSource(null)
       }}
       active={hoveredItem === item.title ? 1 : 0}
+      isLast={isLast}
     >
       <Details
         active={hoveredItem === item.title ? 1 : 0}
