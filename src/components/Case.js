@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled, { css } from 'styled-components';
 import { transparentize } from 'polished';
+import { store } from '../store/store';
+import { motion } from 'framer-motion';
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
+  cursor: pointer;
   padding: 0rem 1.4rem;
   margin-bottom: 0;
   border-bottom: 1px solid ${({ theme }) => transparentize(1, theme.black)};
@@ -78,7 +81,7 @@ const StyledA = styled.a`
     font-size: 2.4rem;
     opacity: 0;
     ${({ theme }) => theme.transition('opacity', '0.3')};
-    ${({ theme, active }) =>
+    ${({ active }) =>
     active &&
     css`
       opacity: 1;
@@ -86,24 +89,34 @@ const StyledA = styled.a`
   }
 `;
 
-const Case = ({ title, year, link, hoveredItem, setHoveredItem }) => {
+const Case = ({ item, hoveredItem, setHoveredItem, setImgVisible, setImgSource }) => {
+  // const { state, dispatch } = useContext(store);
+
   return (
     <Wrapper
-      onMouseEnter={() => setHoveredItem(title)}
-      onMouseLeave={() => setHoveredItem(null)}
-      active={hoveredItem == title ? 1 : 0}
+      onHoverStart={() => {
+        setHoveredItem(item.title);
+        setImgVisible(true);
+        setImgSource(item.img);
+      }}
+      onHoverEnd={() => {
+        setHoveredItem(null);
+        setImgVisible(false);
+        setImgSource(null)
+      }}
+      active={hoveredItem === item.title ? 1 : 0}
     >
       <Details
-        active={hoveredItem == title ? 1 : 0}
+        active={hoveredItem === item.title ? 1 : 0}
         inactive={hoveredItem != null ? 1 : 0}
       >
-        <h2>{title}</h2>
-        <p>{year}</p>
+        <h2>{item.title}</h2>
+        <p>{item.year}</p>
       </Details>
       <div>
         <StyledA
-          href={link} target="_blank"
-          active={hoveredItem == title ? 1 : 0}
+          href={item.url} target="_blank"
+          active={hoveredItem === item.title ? 1 : 0}
         >(VIEW WEBSITE)</StyledA>
       </div>
     </Wrapper>
