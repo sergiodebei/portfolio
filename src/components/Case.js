@@ -2,14 +2,14 @@ import React, { useEffect, useContext } from 'react';
 import styled, { css } from 'styled-components';
 import { transparentize } from 'polished';
 import { store } from '../store/store';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Wrapper = styled(motion.div)`
   cursor: pointer;
   padding: 0rem 1.4rem;
   margin-bottom: 0;
   border-bottom: 1px solid ${({ theme }) => transparentize(1, theme.black)};
-  @media (${({ theme }) => theme.respondTo.desktop}) {
+  @media (${({ theme }) => theme.respondTo.tablet}) {
     padding: 0 3rem;
     display: flex;
     justify-content: space-between;
@@ -26,7 +26,7 @@ const Wrapper = styled(motion.div)`
       padding: 2rem 1.4rem;
       border-bottom: 1px solid ${({ theme }) => transparentize(0.8, theme.white)};
       margin-bottom: 2rem;
-      @media (${theme.respondTo.desktop}) {
+      @media (${theme.respondTo.tablet}) {
         padding: 1.7rem 3rem;
         margin-bottom: 1.7rem;
       }
@@ -45,13 +45,13 @@ const Details = styled.div`
   align-items: baseline;
   h2{
     font-size: 4.2rem;
-    @media (${({ theme }) => theme.respondTo.desktop}) {
+    @media (${({ theme }) => theme.respondTo.tablet}) {
       font-size: 12rem;
     }
   }
   p{
     display: none;
-    @media (${({ theme }) => theme.respondTo.desktop}) {
+    @media (${({ theme }) => theme.respondTo.tablet}) {
       display: block;
       margin-left: 3.3rem;
     }
@@ -68,18 +68,24 @@ const Details = styled.div`
     `}
 `;
 
-const StyledA = styled.a`
+const LinkWrapper = styled.div`
+  overflow: hidden;
+`;
+
+const StyledA = styled(motion.a)`
   margin-top: 1.1rem;
   font-size: 1.4rem;
   line-height: 1.25;
   color: ${({ theme }) => theme.white};
-  display: none;
+  /* display: none; */
+  /* display: inline-block;
+  transform: translateY(-100%);
   ${({ theme, active }) =>
     active &&
     css`
-      display: block;
-    `}
-  @media (${({ theme }) => theme.respondTo.desktop}) {
+      transform: translateY(0%);
+    `} */
+  @media (${({ theme }) => theme.respondTo.tablet}) {
     display: block;
     margin-top: 0;
     font-size: 2.4rem;
@@ -108,6 +114,11 @@ const Case = ({ item, hoveredItem, setHoveredItem, setImgVisible, setImgSource, 
         setImgVisible(false);
         setImgSource(null)
       }}
+      onTapStart={() => {
+        setHoveredItem(item.title);
+        setImgVisible(true);
+        setImgSource(item.img);
+      }}
       active={hoveredItem === item.title ? 1 : 0}
       isLast={isLast}
     >
@@ -119,10 +130,33 @@ const Case = ({ item, hoveredItem, setHoveredItem, setImgVisible, setImgSource, 
         <p>{item.year}</p>
       </Details>
       <div>
-        <StyledA
-          href={item.url} target="_blank"
-          active={hoveredItem === item.title ? 1 : 0}
-        >(VIEW WEBSITE)</StyledA>
+        <LinkWrapper>
+          <AnimatePresence key={item.title}>
+            {hoveredItem === item.title &&
+              <StyledA
+                href={item.url} target="_blank"
+                initial={{
+                  opacity: 0,
+                }}
+                animate={{
+                  opacity: 1,
+                  transition: {
+                    opacity: { ease: 'easeInOut', duration: 1.2 },
+                  },
+                }}
+                exit={{
+                  opacity: 0,
+                  transition: {
+                    opacity: { duration: 0.15 },
+                  },
+                }}
+              // active={hoveredItem === item.title ? 1 : 0}
+              >
+                (VIEW WEBSITE)
+              </StyledA>
+            }
+          </AnimatePresence>
+        </LinkWrapper>
       </div>
     </Wrapper>
   )

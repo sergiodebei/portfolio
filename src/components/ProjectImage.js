@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { motion, AnimatePresence } from 'framer-motion';
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
   position: fixed;
   pointer-events: none;
   left: 0;
@@ -22,11 +23,29 @@ const Wrapper = styled.div`
 
 const ProjectImage = ({ visible, src }) => {
   return (
-    <div>
-      {visible && src && src != null && <Wrapper>
-        <img src={require(`../../static/images/${src}`)} />
-      </Wrapper>}
-    </div>
+    <AnimatePresence key={src}>
+      {visible && src && src != null &&
+        <Wrapper
+          initial={{
+            opacity: 0,
+          }}
+          animate={{
+            opacity: 1,
+            transition: {
+              opacity: { ease: 'easeInOut', duration: 0.3 },
+            },
+          }}
+          exit={{
+            opacity: 0,
+            transition: {
+              opacity: { duration: 0.15 },
+            },
+          }}
+        >
+          <img src={require(`../../static/images/${src}`)} />
+        </Wrapper>
+      }
+    </AnimatePresence>
   )
 }
 
