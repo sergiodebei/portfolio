@@ -1,23 +1,31 @@
 import React from 'react'
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
+
+//Components 
+import About from './About';
+import Contact from './Contact';
 
 const Wrapper = styled.header`
   position: fixed;
   top: 2rem;
   right: 1.4rem;
   left: 1.4rem;
-  padding: 0 0.9rem;
   background: ${({ theme }) => theme.white};
-  /* padding: 1.8rem 2.4rem; */
   @media (${({ theme }) => theme.respondTo.desktop}) {
     top: 3.8rem;
     right: 3rem;
     left: 3rem;
-    padding: 0 1.5rem;
+    
   }
 `;
 
-const NavWrapper = styled.div``;
+const NavWrapper = styled.div`
+  padding: 0 0.9rem;
+  @media (${({ theme }) => theme.respondTo.desktop}) {
+    padding: 0 1.5rem;
+  }
+`;
 
 const Nav = styled.nav`
   ul{
@@ -52,6 +60,10 @@ const header = () => {
           </ul>
         </Nav>
       </NavWrapper>
+      <div>
+        {/* <About /> */}
+        <Contact />
+      </div>
     </Wrapper>
   )
 }
