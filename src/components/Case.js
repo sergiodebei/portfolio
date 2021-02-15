@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled, { css } from 'styled-components';
 import { transparentize } from 'polished';
 import { store } from '../store/store';

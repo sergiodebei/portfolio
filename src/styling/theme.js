@@ -17,7 +17,6 @@ const theme = {
     maxContainerWidth: '1380px',
 
     // Breakpoints
-    //media queries
     respondTo: {
         desktopExtraBig: `min-width: 1600px`,
         desktopSuperBig: `min-width: 1400px`,
