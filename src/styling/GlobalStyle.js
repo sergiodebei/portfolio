@@ -72,23 +72,6 @@ const GlobalStyle = createGlobalStyle`
   a {
     color: inherit;
     text-decoration: none;
-    position: relative;
-    &:after{
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: 1px;
-      opacity: 1;
-      background-color: ${({ theme }) => theme.black};
-      ${({ theme }) => theme.transition('opacity', '0.3')};
-    }
-    &:hover{
-      &:after{
-        opacity: 0;
-      }
-    }
   }
 
   ul {

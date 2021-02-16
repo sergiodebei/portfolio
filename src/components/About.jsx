@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { store } from '../store/store';
 
 //Components
 import Paragraph from '../typography/Paragraph'
+import MenuDropdown from './MenuDropdown';
+import Image from './Image';
 
 const Wrapper = styled(motion.div)`
     padding: 2.4rem;
@@ -45,17 +48,36 @@ const ImageWrapper = styled.div`
 `;
 
 const About = () => {
+  const { state, dispatch } = useContext(store);
+
   return (
-    <Wrapper>
-      <Content>
-        <Paragraph>
-          Sergio de Bei is developer based in Amsterdam, NL. He’s currently working at Bravoure.
-        </Paragraph>
-        <ImageWrapper>
-          <img src={require(`../../static/images/sergiodebei.png`)} />
-        </ImageWrapper>
-      </Content>
-    </Wrapper>
+    <div>
+      {state.activeMenuItem === 'about' && (
+        <MenuDropdown
+          initial={{ height: 0 }}
+          animate={{ height: 'auto' }}
+          transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.75 }}
+          layoutId={'MenuDropdown'}
+        >
+          <div>
+            <Wrapper
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1, transition: { delay: 0.15 } }}
+            >
+              <Content>
+                <Paragraph>
+                  Sergio de Bei is developer based in Amsterdam, NL. He’s currently working at Bravoure.
+                </Paragraph>
+                <ImageWrapper>
+                  <img src={require(`../../static/images/sergiodebei.png`)} />
+                  {/* <Image src={require(`../../static/images/sergiodebei.png`)} alt={'Sergio de Bei'} /> */}
+                </ImageWrapper>
+              </Content>
+            </Wrapper>
+          </div>
+        </MenuDropdown>
+      )}
+    </div>
   )
 }
 

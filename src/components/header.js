@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { store } from '../store/store';
 
 //Components 
+import MenuItem from './MenuItem';
+import Close from './Close';
 import About from './About';
 import Contact from './Contact';
 
@@ -45,27 +48,42 @@ const Nav = styled.nav`
   }
 `
 
-const header = () => {
+const Header = () => {
+
+  const [left, setLeft] = useState(0);
+  const menuItem = useRef(null);
+
+  useEffect(() => {
+    setLeft(menuItem?.current?.getBoundingClientRect().left - 40);
+  }, [left, menuItem]);
+
   return (
     <Wrapper>
       <NavWrapper>
         <Nav>
           <ul>
-            <li>
-              Sergio De Bei
-            </li>
-            <li>
+            <MenuItem
+              item={'Sergio De Bei'}
+              slug={'about'}
+            />
+            <MenuItem
+              item={'Contact'}
+              slug={'contact'}
+            // ref={menuItem}
+            />
+            {/* <li ref={menuItem}>
               Contact
-            </li>
+            </li> */}
           </ul>
+          <Close />
         </Nav>
       </NavWrapper>
       <div>
-        {/* <About /> */}
-        <Contact />
+        <About />
+        <Contact left={left} />
       </div>
     </Wrapper>
   )
 }
 
-export default header
+export default Header
