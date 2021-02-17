@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef, useContext } from 'react'
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import { motion, AnimateSharedLayout } from 'framer-motion';
 import { store } from '../store/store';
+import useDeviceDetection from '../hooks/useDeviceDetection';
 
 //Components 
 import MenuItem from './MenuItem';
@@ -51,24 +52,44 @@ const Nav = styled.nav`
 const Header = () => {
 
   const [left, setLeft] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
+  const [hoveredFilter, setHoveredFilter] = useState(null);
+  const { isMobile, isDesktop } = useDeviceDetection();
   const menuItem = useRef(null);
+
+  const aboutIsActive = hoveredFilter === 'about';
+  const contactIsActive = hoveredFilter === 'contact';
+
 
   useEffect(() => {
     setLeft(menuItem?.current?.getBoundingClientRect().left - 40);
   }, [left, menuItem]);
 
+  useEffect(() => {
+    if (isHovering === true) return;
+    const timeout = setTimeout(() => setHoveredFilter(null), 500);
+    return () => clearTimeout(timeout);
+  }, [isHovering])
+
   return (
-    <Wrapper>
+    <Wrapper
+      onMouseEnter={() => isDesktop && setIsHovering(true)}
+      onMouseLeave={() => isDesktop && setIsHovering(false)}
+    >
       <NavWrapper>
         <Nav>
           <ul>
             <MenuItem
               item={'Sergio De Bei'}
               slug={'about'}
+
+              setHoveredFilter={setHoveredFilter}
             />
             <MenuItem
               item={'Contact'}
               slug={'contact'}
+
+              setHoveredFilter={setHoveredFilter}
             // ref={menuItem}
             />
             {/* <li ref={menuItem}>
@@ -78,12 +99,19 @@ const Header = () => {
           <Close />
         </Nav>
       </NavWrapper>
+      {/* <AnimateSharedLayout> */}
       <div>
-        <About />
-        <Contact left={left} />
+        <About
+          active={aboutIsActive}
+        />
+        <Contact
+          left={left}
+          active={contactIsActive}
+        />
       </div>
+      {/* </AnimateSharedLayout> */}
     </Wrapper>
   )
-}
+} 
 
-export default Header
+export default Header;

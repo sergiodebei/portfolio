@@ -11,13 +11,13 @@ const useDeviceDetection = () => {
   const [isDesktopL, setIsDesktopL] = useState(false);
   const [isDesktopXL, setIsDesktopXL] = useState(false);
 
-  if (typeof window !== 'undefined') {
-    mobile = useMediaQuery({ query: `(${theme.respondTo.mobile})` });
-    tablet = useMediaQuery({ query: `(${theme.respondTo.tablet})` });
-    desktop = useMediaQuery({ query: `(${theme.respondTo.desktop})` });
-    desktopL = useMediaQuery({ query: `(${theme.respondTo.desktopL})` });
-    desktopXL = useMediaQuery({ query: `(${theme.respondTo.desktopXL})` });
-  }
+  // if (typeof window !== 'undefined') {
+  mobile = useMediaQuery({ query: `(${theme.respondTo.mobile})` });
+  tablet = useMediaQuery({ query: `(${theme.respondTo.tablet})` });
+  desktop = useMediaQuery({ query: `(${theme.respondTo.desktop})` });
+  desktopL = useMediaQuery({ query: `(${theme.respondTo.desktopL})` });
+  desktopXL = useMediaQuery({ query: `(${theme.respondTo.desktopXL})` });
+  // }
 
   useEffect(() => {
     mobile ? setIsMobile(true) : setIsMobile(false);

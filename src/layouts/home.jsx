@@ -10,7 +10,7 @@ import theme from '../styling/theme';
 import Header from '../components/Header';
 // import ShareImg from '../../static/images/share-image.jpg';
 
-const Layout = ({ children, backgroundColor, volume, setVolume }) => {
+const Layout = ({ children, backgroundColor }) => {
     return (
         <ThemeProvider theme={{ ...theme, backgroundColor }}>
             <>
@@ -28,7 +28,7 @@ const Layout = ({ children, backgroundColor, volume, setVolume }) => {
                     {/* <meta name="image" content={ShareImg} /> */}
                     {/* <meta property="og:image" content={ShareImg} /> */}
                 </Helmet>
-                <Header volume={volume} />
+                <Header />
                 <main>{children}</main>
             </>
         </ThemeProvider>

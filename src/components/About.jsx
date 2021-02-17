@@ -47,15 +47,15 @@ const ImageWrapper = styled.div`
   }
 `;
 
-const About = () => {
+const About = ({ active }) => {
   const { state, dispatch } = useContext(store);
 
   return (
     <div>
-      {state.activeMenuItem === 'about' && (
+      {active && (
         <MenuDropdown
           initial={{ height: 0 }}
-          animate={{ height: 'auto' }}
+          animate={{ height: active ? 'auto' : 0 }}
           transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.75 }}
           layoutId={'MenuDropdown'}
         >

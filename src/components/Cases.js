@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-// import useDeviceDetection from '../hooks/useDeviceDetection';
+import useDeviceDetection from '../hooks/useDeviceDetection';
 
 // Component 
 import Case from '../components/case';
