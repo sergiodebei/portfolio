@@ -18,7 +18,7 @@ const Wrapper = styled(motion.div)`
 const Content = styled.div`
     display: flex;
     flex-wrap: wrap;
-    > {
+    > div {
         width: 100%;
         &:first-child {
             margin-top: 2rem;
@@ -69,8 +69,7 @@ const About = ({ active }) => {
                   Sergio de Bei is developer based in Amsterdam, NL. He’s currently working at Bravoure.
                 </Paragraph>
                 <ImageWrapper>
-                  <img src={require(`../../static/images/sergiodebei.png`)} />
-                  {/* <Image src={require(`../../static/images/sergiodebei.png`)} alt={'Sergio de Bei'} /> */}
+                  <Image src={'sergiodebei.png'} alt={'Sergio de Bei'} />
                 </ImageWrapper>
               </Content>
             </Wrapper>

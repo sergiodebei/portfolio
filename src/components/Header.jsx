@@ -9,6 +9,7 @@ import MenuItem from './MenuItem';
 import Close from './Close';
 import About from './About';
 import Contact from './Contact';
+import Image from './Image'
 
 const Wrapper = styled.header`
   position: fixed;
@@ -69,7 +70,7 @@ const Header = () => {
     if (isHovering === true) return;
     const timeout = setTimeout(() => setHoveredFilter(null), 500);
     return () => clearTimeout(timeout);
-  }, [isHovering])
+  }, [isHovering]);
 
   return (
     <Wrapper
@@ -82,13 +83,11 @@ const Header = () => {
             <MenuItem
               item={'Sergio De Bei'}
               slug={'about'}
-
               setHoveredFilter={setHoveredFilter}
             />
             <MenuItem
               item={'Contact'}
               slug={'contact'}
-
               setHoveredFilter={setHoveredFilter}
             // ref={menuItem}
             />
@@ -112,6 +111,6 @@ const Header = () => {
       {/* </AnimateSharedLayout> */}
     </Wrapper>
   )
-} 
+}
 
 export default Header;
