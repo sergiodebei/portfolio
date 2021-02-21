@@ -77,14 +77,6 @@ const StyledA = styled(motion.a)`
   font-size: 1.4rem;
   line-height: 1.25;
   color: ${({ theme }) => theme.white};
-  /* display: none; */
-  /* display: inline-block;
-  transform: translateY(-100%);
-  ${({ theme, active }) =>
-    active &&
-    css`
-      transform: translateY(0%);
-    `} */
   @media (${({ theme }) => theme.respondTo.tablet}) {
     display: block;
     margin-top: 0;
@@ -99,8 +91,7 @@ const StyledA = styled(motion.a)`
   }
 `;
 
-const Case = ({ item, hoveredItem, setHoveredItem, setImgVisible, setImgSource, isLast }) => {
-  // const { state, dispatch } = useContext(store);
+const Case = ({ item, hoveredItem, setHoveredItem, setImgVisible, setImgSource, isLast, setIsHovering }) => {
 
   return (
     <Wrapper
@@ -108,17 +99,19 @@ const Case = ({ item, hoveredItem, setHoveredItem, setImgVisible, setImgSource, 
         setHoveredItem(item.title);
         setImgVisible(true);
         setImgSource(item.img);
+        setIsHovering(true);
       }}
       onHoverEnd={() => {
-        setHoveredItem(null);
-        setImgVisible(false);
-        setImgSource(null)
+        // setHoveredItem(null);
+        // setImgVisible(false);
+        // setImgSource(null)
+        setIsHovering(false);
       }}
-      onTapStart={() => {
-        setHoveredItem(item.title);
-        setImgVisible(true);
-        setImgSource(item.img);
-      }}
+      // onTapStart={() => {
+      //   setHoveredItem(item.title);
+      //   setImgVisible(true);
+      //   setImgSource(item.img);
+      // }}
       active={hoveredItem === item.title ? 1 : 0}
       isLast={isLast}
     >
@@ -137,17 +130,20 @@ const Case = ({ item, hoveredItem, setHoveredItem, setImgVisible, setImgSource, 
                 href={item.url} target="_blank"
                 initial={{
                   opacity: 0,
+                  y: 100,
                 }}
                 animate={{
+                  y: 0,
                   opacity: 1,
                   transition: {
-                    opacity: { ease: 'easeInOut', duration: 1.2 },
+                    y: { ease: 'easeInOut', duration: 0.8 },
                   },
                 }}
                 exit={{
+                  y: 100,
                   opacity: 0,
                   transition: {
-                    opacity: { duration: 0.15 },
+                    y: { duration: 0.3 },
                   },
                 }}
               // active={hoveredItem === item.title ? 1 : 0}

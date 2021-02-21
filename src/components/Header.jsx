@@ -55,7 +55,7 @@ const Header = () => {
   const [left, setLeft] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
   const [hoveredFilter, setHoveredFilter] = useState(null);
-  const { isMobile, isDesktop } = useDeviceDetection();
+  const { isDesktop } = useDeviceDetection();
   const menuItem = useRef(null);
 
   const aboutIsActive = hoveredFilter === 'about';

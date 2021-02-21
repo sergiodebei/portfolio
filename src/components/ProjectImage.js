@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 
+//Components
+import Image from './Image';
+
 const Wrapper = styled(motion.div)`
   position: fixed;
   pointer-events: none;
@@ -11,6 +14,7 @@ const Wrapper = styled(motion.div)`
   height: 100%;
   z-index: -1;
   overflow: hidden;
+  > div, 
   img {
     position: absolute;
     top: 0;
@@ -27,22 +31,23 @@ const ProjectImage = ({ visible, src }) => {
       {visible && src && src != null &&
         <Wrapper
           initial={{
-            opacity: 0,
+            opacity: 1,
           }}
           animate={{
             opacity: 1,
             transition: {
-              opacity: { ease: 'easeInOut', duration: 0.3 },
+              opacity: { ease: 'easeInOut', duration: 0.8 },
             },
           }}
           exit={{
-            opacity: 0,
+            opacity: 1,
             transition: {
-              opacity: { duration: 0.15 },
+              opacity: { duration: 0.3 },
             },
           }}
         >
-          <img src={require(`../../static/images/${src}`)} />
+          {/* <img src={require(`../../static/images/${src}`)} /> */}
+          <Image src={src} alt={''} />
         </Wrapper>
       }
     </AnimatePresence>

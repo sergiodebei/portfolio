@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import styled from 'styled-components';
-import useDeviceDetection from '../hooks/useDeviceDetection';
 
 // Component 
 import Case from '../components/case';
@@ -18,7 +17,14 @@ const Wrapper = styled.div`
 `;
 
 const Cases = ({ hoveredItem, setHoveredItem, setImgVisible, setImgSource }) => {
-  // const { isMobile } = useDeviceDetection();
+  const [isHovering, setIsHovering] = useState(false);
+
+  useEffect(() => {
+    console.log(isHovering);
+    if (isHovering === true) return;
+    const timeout = setTimeout(() => {setHoveredItem(null); setImgVisible(false); setImgSource(null)}, 500);
+    return () => clearTimeout(timeout);
+  }, [isHovering]);
 
   return (
     <Wrapper>
@@ -31,6 +37,7 @@ const Cases = ({ hoveredItem, setHoveredItem, setImgVisible, setImgSource }) => 
           setImgSource={setImgSource}
           setImgVisible={setImgVisible}
           isLast={projects.length - 1 === i}
+          setIsHovering={setIsHovering}
         />
       ))}
     </Wrapper>
