@@ -7,7 +7,7 @@ import useDeviceDetection from '../hooks/useDeviceDetection';
 const Wrapper = styled(motion.li)`
 `;
 
-const MenuItem = ({ item, slug, setHoveredFilter }) => {
+const MenuItem = ({ item, slug, setHoveredFilter, setIsHovering }) => {
   const { state, dispatch } = useContext(store);
   const { isMobile, isDesktop } = useDeviceDetection();
   // console.log("🚀 ~ file: MenuItem.jsx ~ line 11 ~ MenuItem ~ state", state.activeMenuItem)
@@ -26,7 +26,9 @@ const MenuItem = ({ item, slug, setHoveredFilter }) => {
       //     payload: null,
       //   });
       // }}
-      onMouseEnter={() => !isMobile && setHoveredFilter(slug)}
+      onMouseEnter={() => isDesktop && setHoveredFilter(slug)}
+      onClick={() => isMobile && setHoveredFilter(slug)}
+      // onMouseLeave={() => isDesktop && setIsHovering(null)}
     >
       {item}
     </Wrapper>

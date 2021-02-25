@@ -66,11 +66,11 @@ const Header = () => {
     setLeft(menuItem?.current?.getBoundingClientRect().left - 40);
   }, [left, menuItem]);
 
-  useEffect(() => {
-    if (isHovering === true) return;
-    const timeout = setTimeout(() => setHoveredFilter(null), 500);
-    return () => clearTimeout(timeout);
-  }, [isHovering]);
+  // useEffect(() => {
+  //   if (isHovering === true) return;
+  //   const timeout = setTimeout(() => setHoveredFilter(null), 500);
+  //   return () => clearTimeout(timeout);
+  // }, [isHovering]);
 
   return (
     <Wrapper
@@ -84,18 +84,23 @@ const Header = () => {
               item={'Sergio De Bei'}
               slug={'about'}
               setHoveredFilter={setHoveredFilter}
+              setIsHovering={setIsHovering}
             />
             <MenuItem
               item={'Contact'}
               slug={'contact'}
               setHoveredFilter={setHoveredFilter}
+              setIsHovering={setIsHovering}
             // ref={menuItem}
             />
             {/* <li ref={menuItem}>
               Contact
             </li> */}
           </ul>
-          <Close />
+          <Close 
+            setIsHovering={setIsHovering}
+            setHoveredFilter={setHoveredFilter}
+          />
         </Nav>
       </NavWrapper>
       {/* <AnimateSharedLayout> */}
