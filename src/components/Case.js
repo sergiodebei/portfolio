@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import { transparentize } from 'polished';
 import { store } from '../store/store';
 import { motion, AnimatePresence } from 'framer-motion';
+import useDeviceDetection from '../hooks/useDeviceDetection';
 
 const Wrapper = styled(motion.div)`
   cursor: pointer;
@@ -77,41 +78,28 @@ const StyledA = styled(motion.a)`
   font-size: 1.4rem;
   line-height: 1.25;
   color: ${({ theme }) => theme.white};
+  pointer-events: ${({ active }) => active ? 'all' : 'none' };
   @media (${({ theme }) => theme.respondTo.tablet}) {
     display: block;
     margin-top: 0;
     font-size: 2.4rem;
-    opacity: 0;
-    ${({ theme }) => theme.transition('opacity', '0.3')};
-    ${({ active }) =>
-    active &&
-    css`
-      opacity: 1;
-    `}
   }
 `;
 
 const Case = ({ item, hoveredItem, setHoveredItem, setImgVisible, setImgSource, isLast, setIsHovering }) => {
+  const { isMobile, isDesktop } = useDeviceDetection();
+
+  const activeItem = (item) => {
+    setHoveredItem(item.title);
+    setImgVisible(true);
+    setImgSource(item.img);
+    setIsHovering(true);
+  };
 
   return (
     <Wrapper
-      onHoverStart={() => {
-        setHoveredItem(item.title);
-        setImgVisible(true);
-        setImgSource(item.img);
-        setIsHovering(true);
-      }}
-      onHoverEnd={() => {
-        // setHoveredItem(null);
-        // setImgVisible(false);
-        // setImgSource(null)
-        setIsHovering(false);
-      }}
-      // onTapStart={() => {
-      //   setHoveredItem(item.title);
-      //   setImgVisible(true);
-      //   setImgSource(item.img);
-      // }}
+      onMouseEnter={() => isDesktop && activeItem(item)}
+      onClick={() => isMobile && activeItem(item)}
       active={hoveredItem === item.title ? 1 : 0}
       isLast={isLast}
     >
@@ -124,10 +112,9 @@ const Case = ({ item, hoveredItem, setHoveredItem, setImgVisible, setImgSource, 
       </Details>
       <div>
         <LinkWrapper>
-          <AnimatePresence key={item.title}>
             {hoveredItem === item.title &&
               <StyledA
-                href={item.url} target="_blank"
+                href={item.url} target="_blank" rel="nofollow"
                 initial={{
                   opacity: 0,
                   y: 100,
@@ -143,15 +130,14 @@ const Case = ({ item, hoveredItem, setHoveredItem, setImgVisible, setImgSource, 
                   y: 100,
                   opacity: 0,
                   transition: {
-                    y: { duration: 0.3 },
+                    y: { duration: 0.1 },
                   },
                 }}
-              // active={hoveredItem === item.title ? 1 : 0}
+              active={hoveredItem === item.title ? 1 : 0}
               >
                 (VIEW WEBSITE)
               </StyledA>
             }
-          </AnimatePresence>
         </LinkWrapper>
       </div>
     </Wrapper>

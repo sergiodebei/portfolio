@@ -1,16 +1,15 @@
 import React, { useState, useEffect, useRef, useContext } from 'react'
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { store } from '../store/store';
+// import { store } from '../store/store';
 import useDeviceDetection from '../hooks/useDeviceDetection';
 
 const Wrapper = styled(motion.li)`
 `;
 
 const MenuItem = ({ item, slug, setHoveredFilter, setIsHovering }) => {
-  const { state, dispatch } = useContext(store);
+  // const { state, dispatch } = useContext(store);
   const { isMobile, isDesktop } = useDeviceDetection();
-  // console.log("🚀 ~ file: MenuItem.jsx ~ line 11 ~ MenuItem ~ state", state.activeMenuItem)
 
   return (
     <Wrapper

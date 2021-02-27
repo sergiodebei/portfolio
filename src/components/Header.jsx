@@ -5,7 +5,7 @@ import { store } from '../store/store';
 import useDeviceDetection from '../hooks/useDeviceDetection';
 
 //Components 
-import MenuItem from './MenuItem';
+import HeaderMenuItem from './HeaderMenuItem';
 import Close from './Close';
 import About from './About';
 import Contact from './Contact';
@@ -85,13 +85,13 @@ const Header = () => {
       <NavWrapper>
         <Nav>
           <ul>
-            <MenuItem
+            <HeaderMenuItem
               item={'Sergio De Bei'}
               slug={'about'}
               setHoveredFilter={setHoveredFilter}
               setIsHovering={setIsHovering}
             />
-            <MenuItem
+            <HeaderMenuItem
               item={'Contact'}
               slug={'contact'}
               setHoveredFilter={setHoveredFilter}

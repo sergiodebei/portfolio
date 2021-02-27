@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from 'react'
 import styled from 'styled-components';
+import useDeviceDetection from '../hooks/useDeviceDetection';
 
 // Component 
 import Case from '../components/case';
@@ -18,16 +19,26 @@ const Wrapper = styled.div`
 
 const Cases = ({ hoveredItem, setHoveredItem, setImgVisible, setImgSource }) => {
   const [isHovering, setIsHovering] = useState(false);
+  const { isDesktop } = useDeviceDetection();
 
-  useEffect(() => {
-    console.log(isHovering);
-    if (isHovering === true) return;
-    const timeout = setTimeout(() => {setHoveredItem(null); setImgVisible(false); setImgSource(null)}, 500);
-    return () => clearTimeout(timeout);
-  }, [isHovering]);
+  // useEffect(() => {
+  //   console.log(isHovering);
+  //   if (isHovering === true) return;
+  //   const timeout = setTimeout(() => {setHoveredItem(null); setImgVisible(false); setImgSource(null)}, 500);
+  //   return () => clearTimeout(timeout);
+  // }, [isHovering]);
+
+  const onMouseLeave = () => {
+    setHoveredItem(null);
+    setImgVisible(false);
+    setImgSource(null)
+    setIsHovering(false);
+  };
 
   return (
-    <Wrapper>
+    <Wrapper
+      // onMouseLeave={() => isDesktop && onMouseLeave()}
+    >
       {projects.map((item, i) => (
         <Case
           key={i}
