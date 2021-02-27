@@ -1,7 +1,9 @@
 import React from 'react'
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
+  cursor: pointer;
   position: absolute;
   right: 0;
   top: 0;
@@ -25,14 +27,32 @@ const Wrapper = styled.div`
   }
   @media (${({ theme }) => theme.respondTo.desktop}) {
     display: none;
+    width: 6.8rem;
+    height: 6.8rem;
   }
 `;
 
 
-const Close = () => {
+const Close = ({ setIsHovering, hoveredFilter, setHoveredFilter }) => {
+
+  const handleClick = () => {
+    setIsHovering(false);
+    setHoveredFilter(null);
+  };
+
+
   return (
-    <Wrapper>
+    <>
+    {hoveredFilter != null && (
+    <Wrapper 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, transition: { delay: 0.15 } }}
+      exit={{opacity: 0}}
+      onClick={() => handleClick()}
+    >
     </Wrapper>
+    )}
+    </>
   )
 }
 
