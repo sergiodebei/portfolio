@@ -69,7 +69,7 @@ const About = ({ active }) => {
                   Sergio de Bei is developer based in Amsterdam, NL. He’s currently working at Bravoure.
                 </Paragraph>
                 <ImageWrapper>
-                  <Image src={'sergiodebei.png'} alt={'Sergio de Bei'} />
+                  <Image src={'sergiodebei.jpg'} alt={'Sergio de Bei'} />
                 </ImageWrapper>
               </Content>
             </Wrapper>

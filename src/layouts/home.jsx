@@ -8,7 +8,7 @@ import theme from '../styling/theme';
 // Components 
 
 import Header from '../components/Header';
-// import ShareImg from '../../static/images/share-image.jpg';
+import ShareImg from '../../static/images/share-image.jpg';
 
 const Layout = ({ children, backgroundColor }) => {
     return (
@@ -25,8 +25,10 @@ const Layout = ({ children, backgroundColor }) => {
                         property="og:description"
                         content=""
                     />
-                    {/* <meta name="image" content={ShareImg} /> */}
-                    {/* <meta property="og:image" content={ShareImg} /> */}
+                    <meta name="image" content={ShareImg} />
+                    <meta property="og:image" content={ShareImg} />
+                    <meta property="og:title" content="Sergio De Bei" />  
+                    <meta property="og:description" content="Sergio de Bei is developer based in Amsterdam, NL. He’s currently working at Bravoure." />
                 </Helmet>
                 <Header />
                 <main>{children}</main>
