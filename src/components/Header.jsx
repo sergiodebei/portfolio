@@ -72,10 +72,15 @@ const Header = () => {
   //   return () => clearTimeout(timeout);
   // }, [isHovering]);
 
+  const onMouseLeave = () => {
+    setIsHovering(false);
+    setHoveredFilter(null);
+  };
+
   return (
     <Wrapper
       onMouseEnter={() => isDesktop && setIsHovering(true)}
-      onMouseLeave={() => isDesktop && setIsHovering(false)}
+      onMouseLeave={() => isDesktop && onMouseLeave()}
     >
       <NavWrapper>
         <Nav>
@@ -99,6 +104,7 @@ const Header = () => {
           </ul>
           <Close 
             setIsHovering={setIsHovering}
+            hoveredFilter={hoveredFilter}
             setHoveredFilter={setHoveredFilter}
           />
         </Nav>

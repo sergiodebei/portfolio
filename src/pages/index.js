@@ -6,7 +6,7 @@ import Layout from '../layouts/home';
 // Component 
 import Cases from '../components/Cases';
 import ProjectImage from '../components/ProjectImage';
-import Cursor from '../components/Cursor';
+// import Cursor from '../components/Cursor';
 
 const IndexPage = () => {
   const [hoveredItem, setHoveredItem] = useState(null);

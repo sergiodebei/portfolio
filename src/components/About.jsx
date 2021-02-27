@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef, useContext } from 'react'
+import React from 'react'
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { store } from '../store/store';
+// import { store } from '../store/store';
 
 //Components
 import Paragraph from '../typography/Paragraph'
@@ -48,7 +48,7 @@ const ImageWrapper = styled.div`
 `;
 
 const About = ({ active }) => {
-  const { state, dispatch } = useContext(store);
+  // const { state, dispatch } = useContext(store);
 
   return (
     <div>
